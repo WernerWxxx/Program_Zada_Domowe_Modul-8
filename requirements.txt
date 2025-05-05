@@ -1,7 +1,7 @@
 openai
 python-dotenv
 streamlit
-BytesIO
+#BytesIO
 pandas
 #import streamlit as st
 # from dotenv import dotenv_values
