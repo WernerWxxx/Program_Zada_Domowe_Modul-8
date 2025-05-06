@@ -3,6 +3,5 @@ python-dotenv
 streamlit
 pandas
 qdrant-client
-dotenv
 PIL
 base64
