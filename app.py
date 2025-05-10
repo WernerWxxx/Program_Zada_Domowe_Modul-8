@@ -10,7 +10,7 @@ st.set_page_config(page_title="Opis Obrazów", layout="centered")
 env = dotenv_values(".env")
 
 EMBEDDING_MODEL = "text-embedding-3-large"
-EMBEDDING_DIM = 6142
+EMBEDDING_DIM = 3072
 QDRANT_COLLECTION_NAME = "image_descriptions"
 
 def get_openai_client():
@@ -97,14 +97,15 @@ elif mode == "Wybór opcji opisu obrazka samodzielnie z klawiatury":
         return "Opis obrazu - Włąsny z klawiatury"
 
 # Inicjalizacja kluczy w session_state
+if "openai_api_key" not in st.session_state:
+    st.session_state["openai_api_key"] = env.get("OPENAI_API_KEY", "")
+    
 if "QDRANT_URL" not in st.session_state:
     st.session_state["QDRANT_URL"] = env.get("QDRANT_URL", "")
 
 if "QDRANT_API_KEY" not in st.session_state:
     st.session_state["QDRANT_API_KEY"] = env.get("QDRANT_API_KEY", "")
 
-if "openai_api_key" not in st.session_state:
-    st.session_state["openai_api_key"] = env.get("OPENAI_API_KEY", "")
 
 def add_description_to_db(description_text):
     qdrant_client = get_qdrant_client()
